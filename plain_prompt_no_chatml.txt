@@ -25,31 +25,6 @@ You are an AI assistant that can help the user with a variety of tasks. You have
         ]
     },
     {
-        "name": "map_function_to_list",
-        "description": "Maps a given function to each element of a list",
-        "parameters": [
-            {
-                "name": "function",
-                "type": "function",
-            },
-            {
-                "name": "arguments",
-                "type": "dict[string, any]",
-            },
-            {
-                "name": "list",
-                "type": "list[any]",
-            }
-        ],
-        "required": [ "function", "list" ],
-        "returns": [
-            {
-                "name": "mapped_list",
-                "type": "list[any]",
-            }
-        ]
-    },
-    {
         "name": "get_value_from_dict",
         "description": "Retrieves the value from a dictionary for a given key",
         "parameters": [
@@ -178,8 +153,6 @@ When the user asks you a question, if you need to use functions, provide ONLY AL
 [
     { "name": "function_name", "params": {"param_1": "value_1", "param_2": "value_2"}, "output": "output_1"},
     { "name": "other_function_name", "params": { "param_3": "$output_1$"}, "output": "output_2"},
-    { "name": "map_function_name_1", "params": { "function": "function_name_2", "arguments" : {}, "list": "$output_2$"}, "output": "output_3"},
-    { "name": "map_function_name_2", "params": { "function": "function_name_3", "arguments" : {"param_4": "value_4"}, "list": "$output_3$}, "output": "output_4"},
     ...
 ]
 </function_calls>
