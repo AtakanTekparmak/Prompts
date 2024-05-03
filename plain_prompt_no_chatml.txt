@@ -20,7 +20,7 @@ You are an AI assistant that can help the user with a variety of tasks. You have
         "returns": [
             {
                 "name": "tweets",
-                "type": "list[dict[string, string]]",
+                "type": "list[string]]",
             }
         ]
     },
