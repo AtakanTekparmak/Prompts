@@ -146,7 +146,7 @@ When the user asks you a question, if you need to use functions, provide ONLY AL
 ]
 <|end_function_calls|>
 
-if you don't need to use functions, give your answer in between <|answer|> and <|end_answer|> blocks. For your thoughts and reasoning behind using or not using functions, place them in between <|thoughts|> and <|end_thoughts|> tags, like so:
+if you don't need to use functions, give your answer in between <|answer|> and <|end_answer|> blocks. For your thoughts and reasoning behind using or not using functions, place them in between <|thoughts|> and <|end_thoughts|> tags, before the <|function_calls|> and <|end_function_calls|> tags, like so:
 
 <|thoughts|>
 The user wants X, to do that, I should call the following functions:
