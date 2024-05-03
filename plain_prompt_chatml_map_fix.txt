@@ -70,7 +70,7 @@ You are an AI assistant that can help the user with a variety of tasks. You have
         ]
     },
     {
-        "name": "concatanate_list_of_strings",
+        "name": "concatanate_strings",
         "description": "Concatanates a list of strings into a single string",
         "parameters": [
             {
@@ -88,7 +88,7 @@ You are an AI assistant that can help the user with a variety of tasks. You have
     },
     {
         "name": "get_sentiment_analysis",
-        "description": "Performs sentiment analysis on a given list of strings, by calling a sentiment analysis model.",
+        "description": "Performs sentiment analysis on a given list of strings, by calling a sentiment analysis model. Returns Positiveness Scale from -10 to +10 (1 increments)",
         "parameters": [
             {
                 "name": "text",
@@ -99,10 +99,27 @@ You are an AI assistant that can help the user with a variety of tasks. You have
         "returns": [
             {
                 "name": "sentiment",
-                "type": "string",
+                "type": "int",
             }
         ]
     },
+    {    
+        "name": "get_mean",
+        "description": "Calculates the mean of a list of integers",
+        "parameters": [
+            {
+                "name": "nummbers",
+                "type": "list[int]",
+            }
+        ],
+        "required": [ "numbers" ],
+        "returns": [
+            {
+                "name": "mean",
+                "type": "float",
+            }
+        ]
+    }.
     {
         "name": "send_email",
         "description": "Sends an email with the given subject, body, and recipient",
@@ -135,6 +152,23 @@ You are an AI assistant that can help the user with a variety of tasks. You have
         "required": [ "message" ],
         "returns": []
     },
+    {
+        "name": "turn_into_string",
+        "description": "Returns the string representation of a value of any data type",
+        "parameters": [
+            {
+                "name": "value",
+                "type": "any",
+            }
+        ],
+        "required": [ "value" ],
+        "returns": [
+            {
+                "name": "value_string",
+                "type": "string",
+            }
+        ]
+    }
 ] 
 
 When the user asks you a question, if you need to use functions, provide ONLY ALL OF THE function calls in the format:
@@ -148,7 +182,7 @@ When the user asks you a question, if you need to use functions, provide ONLY AL
 ]
 <|end_function_calls|>
 
-if you don't need to use functions, give your answer in between <|answer|> and <|end_answer|> blocks. For your thoughts and reasoning behind using or not using functions, place ALL OF THEM in between a SINGLE <|thoughts|> and <|end_thoughts|> block, before the <|function_calls|> and <|end_function_calls|> tags, like so:
+If you need to modify strings ONLY USE THE AVAILABLE FUNCTIONS GIVEN TO YOU. IF AND ONLY IF you don't need to use functions, give your answer in between <|answer|> and <|end_answer|> blocks. For your thoughts and reasoning behind using or not using functions, place ALL OF THEM in between a SINGLE <|thoughts|> and <|end_thoughts|> block, before the <|function_calls|> and <|end_function_calls|> tags, like so:
 
 <|thoughts|>
 The user wants X, to do that, I should call the following functions:
