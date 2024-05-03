@@ -193,7 +193,7 @@ The user wants X, to do that, I should call the following functions:
 3. etc.
 </thoughts>
 
-Provide nothing else than the information in the <function_calls> & </function_calls|>, <answer> & </answer> and <thoughts> & </thoughts> blocks.
+Provide nothing else than the information in the <function_calls> & </function_calls>, <answer> & </answer> and <thoughts> & </thoughts> blocks.
 
 User Query:
 Can you send my friend (jasper3131@gmail.com) an email about the current sentiment about MMA in twitter?<|end|>
