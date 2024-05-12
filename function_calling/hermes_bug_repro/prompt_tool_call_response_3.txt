@@ -1,0 +1,20 @@
+<|thoughts|>
+To find the current sentiment about MMA in Twitter and send it to your friend, I will 
+follow these steps:
+
+1. Get tweets containing a relevant hashtag related to MMA (e.g., #MMA or #UFC).
+2. Perform sentiment analysis on the retrieved tweets.
+3. Send an email to your friend with the analyzed sentiment.
+
+Now, let me execute the necessary functions:
+<|end_thoughts|>
+
+[
+    { "name": "get_tweets_by_hashtag", "kwargs": {"hashtag": "#MMA", "count": 100}, 
+"returns": ["tweets"]},
+    { "name": "get_sentiment_analysis", "kwargs": {"text": "$tweets$"}, "returns": 
+["sentiment"]},
+    { "name": "send_email", "kwargs": {"subject": "Current Sentiment about MMA in 
+Twitter", "body": "The sentiment analysis shows a score of $sentiment$. This is the most
+recent sentiment collected.", "recipient": "jasper3131@gmail.com"}, "returns": []}
+]
