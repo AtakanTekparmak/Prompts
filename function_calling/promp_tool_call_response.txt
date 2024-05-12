@@ -1,0 +1,30 @@
+<|thoughts|>
+To accomplish this task, I will perform the following steps:
+1. Retrieve tweets containing a hashtag related to MMA.
+2. Perform sentiment analysis on those tweets to determine their overall 
+sentiment.
+3. Send an email to your friend with the results of the sentiment 
+analysis.
+
+Here are the functions that will be used for each step:
+
+1. get_tweets_by_hashtag: This function retrieves tweets containing a 
+given hashtag. In this case, we'll use #MMA as the hashtag parameter.
+2. get_sentiment_analysis: This function performs sentiment analysis on a 
+list of strings (tweets in this case). It returns an integer value 
+representing the positiveness scale from -10 to +10.
+
+Once I have the results from both functions, I will concatenate them into 
+a message and send it via email using the send_email function. 
+
+The final output for this task would be:
+[
+    { "name": "get_tweets_by_hashtag", "kwargs": {"hashtag": "MMA", 
+"count": 10}, "returns": ["tweets"]},
+    { "name": "get_sentiment_analysis", "kwargs": {"text": "$tweets$"}, 
+"returns": ["sentiment"]},
+    { "name": "send_email", "kwargs": {"subject": "Sentiment Analysis of 
+MMA on Twitter", "body": "The sentiment analysis results for the hashtag 
+#MMA on Twitter is: $sentiment$.", "recipient": "jasper3131@gmail.com"}, "returns": []}
+]
+<|end_thoughts|>
