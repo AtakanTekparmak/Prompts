@@ -1,0 +1,28 @@
+<|thoughts|>
+To accomplish this task, I will need to perform the 
+following steps:
+
+1. Retrieve tweets containing a relevant hashtag 
+related to MMA.
+2. Perform sentiment analysis on these tweets to 
+determine the overall sentiment towards MMA.
+3. Send an email with the subject "Current Sentiment 
+about MMA in Twitter" and the analyzed sentiment to 
+my friend (jasper3131@gmail.com).
+
+<|end_thoughts|>
+
+<|function_calls|>
+[
+    { "name": "get_tweets_by_hashtag", "kwargs": 
+{"hashtag": "#MMA", "count": 100}, "returns": 
+["tweets"]},
+    { "name": "get_sentiment_analysis", "kwargs": 
+{"text": "$tweets$"}, "returns": ["sentiment"]},
+    { "name": "send_email", "kwargs": {"subject": 
+"Current Sentiment about MMA in Twitter", "body": 
+"The current sentiment analysis of tweets with the 
+hashtag #MMA is: $sentiment$", "recipient": 
+"jasper3131@gmail.com"}, "returns": []}
+]
+<|end_function_calls|>

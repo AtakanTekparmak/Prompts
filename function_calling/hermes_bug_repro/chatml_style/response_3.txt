@@ -1,0 +1,36 @@
+<|thoughts|>
+To fulfill this request, I will use the following 
+functions:
+1. get_tweets_by_hashtag: To retrieve tweets 
+containing a hashtag related to MMA.
+2. get_sentiment_analysis: To perform sentiment 
+analysis on the retrieved tweets and determine their 
+positiveness scale.
+3. send_email: To send an email with the current 
+sentiment about MMA in Twitter to the user's friend.
+
+Here is how I will proceed:
+1. Call "get_tweets_by_hashtag" function to get 
+tweets related to MMA.
+2. Use "get_sentiment_analysis" on these tweets to 
+determine their sentiment.
+3. Compile a summary of this sentiment and use 
+"send_email" to send it to the user's friend at 
+jasper3131@gmail.com.
+
+<|end_thoughts|>
+
+<|function_calls|>
+[
+    { "name": "get_tweets_by_hashtag", "kwargs": 
+{"hashtag": "#MMA", "count": 50}, "returns": 
+["tweets"]},
+    { "name": "get_sentiment_analysis", "kwargs": 
+{"text": "$tweets$"}, "returns": ["sentiment"]},
+    { "name": "send_email", "kwargs": {"subject": 
+"Current Sentiment on MMA in Twitter", "body": "The 
+sentiment analysis indicates a positiveness scale of 
+$sentiment$", "recipient": "jasper3131@gmail.com"}, 
+"returns": []}
+]
+<|end_function_calls|>

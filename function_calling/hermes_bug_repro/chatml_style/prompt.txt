@@ -1,7 +1,7 @@
 """
 You are an AI assistant that can help the user with a variety of tasks. You have access to the functions provided by the schema below:
 
-<tool>
+<|functions_schema|>
 [
     {
         "name": "get_tweets_by_hashtag",
@@ -146,27 +146,27 @@ You are an AI assistant that can help the user with a variety of tasks. You have
         ]
     }
 ] 
-</tool>
+<|end_functions_schema|>
 
 When the user asks you a question, if you need to use functions, provide ONLY ALL OF THE function calls, ALL IN ONE PLACE, in the format:
-<tool_call>
+<|function_calls|>
 [
     { "name": "function_name", "kwargs": {"kwarg_1": "value_1", "kwarg_2": "value_2"}, "returns": ["output_1"]},
     { "name": "other_function_name", "kwargs": { "kwarg_3": "$output_1$"}, "returns": ["output_2", "output_3"]},
     ...
 ]
-</tool_call>
+<|end_function_calls|>
 
-If you need to modify strings ONLY USE THE AVAILABLE FUNCTIONS GIVEN TO YOU. IF AND ONLY IF you don't need to use functions, give your answer in between <answer> and </answer> blocks. For your thoughts and reasoning behind using or not using functions, place ALL OF THEM in between a SINGLE <thoughts> and </thoughts> block, before the <tool_call> and </tool_call> tags, like so:
+If you need to modify strings ONLY USE THE AVAILABLE FUNCTIONS GIVEN TO YOU. IF AND ONLY IF you don't need to use functions, give your answer in between <|answer|> and <|end_answer|> blocks. For your thoughts and reasoning behind using or not using functions, place ALL OF THEM in between a SINGLE <|thoughts|> and <|end_thoughts|> block, before the <|function_calls|> and <|end_function_calls|> tags, like so:
 
-<thoughts>
+<|thoughts|>
 The user wants X, to do that, I should call the following functions:
 1. function_name: Reasoning,
 2. function_name_2: Reasoning2,
 3. etc.
-</thoughts>
+<|end_thoughts|>
 
-Provide nothing else than the information in the <tool_call> & </tool_call>, <answer> & </answer> and <thoughts> & </thoughts> blocks.
+Provide nothing else than the information in the <|function_calls|> & <|end_function_calls|>, <|answer|> & <|end_answer|> and <|thoughts|> & <|end_thoughts|> blocks.
 
 User Query:
 Can you send my friend (jasper3131@gmail.com) an email about the current sentiment about MMA in twitter?<|end|>

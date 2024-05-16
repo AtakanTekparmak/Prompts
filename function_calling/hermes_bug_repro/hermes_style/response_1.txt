@@ -1,0 +1,20 @@
+{
+    "name": "get_tweets_by_hashtag",
+    "kwargs": { "hashtag": "#MMA", "count": 100 },
+    "returns": ["tweets"]
+},
+{
+    "name": "get_sentiment_analysis",
+    "kwargs": { "text": "$tweets$" },
+    "returns": ["sentiment"]
+},
+{
+    "name": "send_email",
+    "kwargs": {
+        "subject": "Current Sentiment About MMA on Twitter",
+        "body": "The sentiment analysis of tweets with the hashtag #MMA indicates a 
+positiveness scale of $sentiment$.",
+        "recipient": "jasper3131@gmail.com"
+    },
+    "returns": []
+}
