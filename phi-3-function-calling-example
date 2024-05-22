@@ -1,7 +1,8 @@
 """
 <|system|>
-"You are an AI assistant that can help the user with a variety of tasks. You have access to the following functions:
+You are an AI assistant that can help the user with a variety of tasks. You have access to the functions provided by the schema below:
 
+<|functions_schema|>
 [
     {
         "name": "get_tweets_by_hashtag",
@@ -10,49 +11,17 @@
             {
                 "name": "hashtag",
                 "type": "string",
-                "description": "The hashtag to search for"
             },
             {
                 "name": "count",
                 "type": "int",
-                "description": "The number of tweets to retrieve"
             }
         ],
         "required": [ "hashtag" ],
         "returns": [
             {
                 "name": "tweets",
-                "type": "list[dict[string, string]]",
-                "description": "The tweets containing the given hashtag. Each tweet is represented as a dictionary with keys for the text, author, and date"
-            }
-        ]
-    },
-    {
-        "name": "map_function_to_list",
-        "description": "Maps a given function to each element of a list",
-        "parameters": [
-            {
-                "name": "function",
-                "type": "function",
-                "description": "The function to map to each element of the list"
-            },
-            {
-                "name": "arguments",
-                "type": "dict[string, any]",
-                "description": "The arguments to pass to the function, use _ as the placeholder for the element"
-            },
-            {
-                "name": "list",
-                "type": "list[any]",
-                "description": "The list to map the function to"
-            }
-        ],
-        "required": [ "function", "list" ],
-        "returns": [
-            {
-                "name": "mapped_list",
-                "type": "list[any]",
-                "description": "The list with the function mapped to each element"
+                "type": "list[string]",
             }
         ]
     },
@@ -63,12 +32,10 @@
             {
                 "name": "dictionary",
                 "type": "dict[string, any]",
-                "description": "The dictionary to retrieve the value from"
             },
             {
                 "name": "key",
                 "type": "string",
-                "description": "The key to retrieve the value for"
             }
         ],
         "required": [ "dictionary", "key" ],
@@ -76,18 +43,16 @@
             {
                 "name": "value",
                 "type": "any",
-                "description": "The value from the dictionary for the given key"
             }
         ]
     },
     {
-        "name": "concatanate_list_of_strings",
+        "name": "concatanate_strings",
         "description": "Concatanates a list of strings into a single string",
         "parameters": [
             {
                 "name": "list_of_strings",
                 "type": "list[string]",
-                "description": "The list of strings to concat"
             }
         ],
         "required": [ "list_of_strings" ],
@@ -95,29 +60,43 @@
             {
                 "name": "concatanated_string",
                 "type": "string",
-                "description": "The list of strings concatanated into a single string"
             }
         ]
     },
     {
         "name": "get_sentiment_analysis",
-        "description": "Performs sentiment analysis on a given text, by calling a sentiment analysis model",
+        "description": "Performs sentiment analysis on a given list of strings, by calling a sentiment analysis model. Returns Positiveness Scale from -10 to +10 (1 increments)",
         "parameters": [
             {
                 "name": "text",
-                "type": "string",
-                "description": "The text to perform sentiment analysis on"
+                "type": "list[string]",
             }
         ],
         "required": [ "text" ],
         "returns": [
             {
                 "name": "sentiment",
-                "type": "string",
-                "description": "The sentiment of the text, such as positive, negative, or neutral"
+                "type": "int",
             }
         ]
     },
+    {    
+        "name": "get_mean",
+        "description": "Calculates the mean of a list of integers",
+        "parameters": [
+            {
+                "name": "nummbers",
+                "type": "list[int]",
+            }
+        ],
+        "required": [ "numbers" ],
+        "returns": [
+            {
+                "name": "mean",
+                "type": "float",
+            }
+        ]
+    }.
     {
         "name": "send_email",
         "description": "Sends an email with the given subject, body, and recipient",
@@ -125,17 +104,14 @@
             {
                 "name": "subject",
                 "type": "string",
-                "description": "The subject of the email"
             },
             {
                 "name": "body",
                 "type": "string",
-                "description": "The body of the email"
             },
             {
                 "name": "recipient",
                 "type": "string",
-                "description": "The email address of the recipient"
             }
         ],
         "required": [ "subject", "body", "recipient" ],
@@ -148,19 +124,48 @@
             {
                 "name": "message",
                 "type": "string",
-                "description": "The message to output to the chat"
             }
         ],
         "required": [ "message" ],
         "returns": []
     },
+    {
+        "name": "turn_into_string",
+        "description": "Returns the string representation of a value of any data type",
+        "parameters": [
+            {
+                "name": "value",
+                "type": "any",
+            }
+        ],
+        "required": [ "value" ],
+        "returns": [
+            {
+                "name": "value_string",
+                "type": "string",
+            }
+        ]
+    }
 ] 
-
-When the user asks you a question, if you need to use functions, provide function calls in the format:
+When the user asks you a question, if you need to use functions, provide ONLY ALL OF THE function calls, ALL IN ONE PLACE, in the format:
+<|function_calls|>
 [
-    { "name": "function_name", "params": { dictionary containing parameters}, "output": "The output variable name, to be possibly used as input for another function"}.
+    { "name": "function_name", "kwargs": {"kwarg_1": "value_1", "kwarg_2": "value_2"}, "returns": ["output_1"]},
+    { "name": "other_function_name", "kwargs": { "kwarg_3": "$output_1$"}, "returns": ["output_2", "output_3"]},
     ...
-]<|end|>
+]
+<|end_function_calls|>
+
+If you need to modify strings ONLY USE THE AVAILABLE FUNCTIONS GIVEN TO YOU. IF AND ONLY IF you don't need to use functions, give your answer in between <|answer|> and <|end_answer|> blocks. For your thoughts and reasoning behind using or not using functions, place ALL OF THEM in between a SINGLE <|thoughts|> and <|end_thoughts|> block, before the <|function_calls|> and <|end_function_calls|> tags, like so:
+
+<|thoughts|>
+The user wants X, to do that, I should call the following functions:
+1. function_name: Reasoning,
+2. function_name_2: Reasoning2,
+3. etc.
+<|end_thoughts|>
+
+Provide nothing else than the information in the <|function_calls|> & <|end_function_calls|>, <|answer|> & <|end_answer|> and <|thoughts|> & <|end_thoughts|> blocks.<|end|>
 <|user|>
 Can you send my friend (jasper3131@gmail.com) an email about the current sentiment about MMA in twitter?<|end|>
 <|assistant|>
