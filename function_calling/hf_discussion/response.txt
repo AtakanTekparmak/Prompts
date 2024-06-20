@@ -1,3 +1,4 @@
+<|thoughts|>
 The user wants to send an email to their friend about the current sentiment about MMA in Twitter and the stats for Sean Strickland. To do that, I should call the following functions:
 
 get_tweets_by_hashtag: To get the tweets about MMA,
