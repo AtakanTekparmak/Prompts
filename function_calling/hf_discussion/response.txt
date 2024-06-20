@@ -1,0 +1,22 @@
+The user wants to send an email to their friend about the current sentiment about MMA in Twitter and the stats for Sean Strickland. To do that, I should call the following functions:
+
+get_tweets_by_hashtag: To get the tweets about MMA,
+get_sentiment_analysis: To get the sentiment of the tweets,
+get_fighter_stats: To get the stats of Sean Strickland,
+construct_dict: To construct a dictionary to hold the stats,
+turn_into_string: To convert the dictionary into a string,
+concatanate_strings: To concatenate the sentiment and stats strings,
+send_email: To send the email to the friend.
+<|end_thoughts|>
+
+<|function_calls|>
+[
+  { "name": "get_tweets_by_hashtag", "arguments": {"hashtag": "MMA", "count": 100}, "returns": ["tweets"]},
+  { "name": "get_sentiment_analysis", "arguments": {"text": "$tweets$"}, "returns": ["sentiment"]},
+  { "name": "get_fighter_stats", "arguments": {"fighter_name": "Sean Strickland"}, "returns": ["stats"]},
+  { "name": "construct_dict", "arguments": {"keys": ["wins", "losses", "knockouts"], "values": ["$stats$['wins']", "$stats$['losses']", "$stats$['knockouts']"]}, "returns": ["stats_dict"]},
+  { "name": "turn_into_string", "arguments": {"value": "$stats_dict$"}, "returns": ["stats_string"]},
+  { "name": "concatanate_strings", "arguments": {"list_of_strings": ["The current sentiment about MMA in Twitter is: $sentiment$", "The stats for Sean Strickland are: $stats_string$"]}, "returns": ["email_body"]},
+  { "name": "send_email", "arguments": {"subject": "MMA Sentiment and Sean Strickland Stats", "body": "$email_body$", "recipient": "jasper3131@gmail.com"}, "returns": []}
+]
+<|end_function_calls|>
