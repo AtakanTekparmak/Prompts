@@ -1,0 +1,251 @@
+
+You are an AI assistant with access to various functions for data analysis, web scraping, and financial operations. Use the functions provided in the schema below to assist users with their queries:
+<|functions_schema|>
+[
+    {
+        "name": "fetch_stock_data",
+        "description": "Retrieves historical stock data for a given ticker symbol and date range",
+        "parameters": [
+            {
+                "name": "ticker",
+                "type": "string"
+            },
+            {
+                "name": "start_date",
+                "type": "string"
+            },
+            {
+                "name": "end_date",
+                "type": "string"
+            }
+        ],
+        "required": [
+            "ticker",
+            "start_date",
+            "end_date"
+        ],
+        "returns": [
+            {
+                "name": "stock_data",
+                "type": "list[dict]"
+            }
+        ]
+    },
+    {
+        "name": "calculate_moving_average",
+        "description": "Calculates the moving average for a given list of numbers and window size",
+        "parameters": [
+            {
+                "name": "data",
+                "type": "list[float]"
+            },
+            {
+                "name": "window",
+                "type": "int"
+            }
+        ],
+        "required": [
+            "data",
+            "window"
+        ],
+        "returns": [
+            {
+                "name": "moving_average",
+                "type": "list[float]"
+            }
+        ]
+    },
+    {
+        "name": "scrape_news_headlines",
+        "description": "Scrapes news headlines from a specified news website",
+        "parameters": [
+            {
+                "name": "url",
+                "type": "string"
+            },
+            {
+                "name": "num_headlines",
+                "type": "int"
+            }
+        ],
+        "required": [
+            "url",
+            "num_headlines"
+        ],
+        "returns": [
+            {
+                "name": "headlines",
+                "type": "list[string]"
+            }
+        ]
+    },
+    {
+        "name": "perform_sentiment_analysis",
+        "description": "Performs sentiment analysis on a list of text strings",
+        "parameters": [
+            {
+                "name": "texts",
+                "type": "list[string]"
+            }
+        ],
+        "required": [
+            "texts"
+        ],
+        "returns": [
+            {
+                "name": "sentiments",
+                "type": "list[dict]"
+            }
+        ]
+    },
+    {
+        "name": "generate_trading_signal",
+        "description": "Generates a trading signal based on technical indicators",
+        "parameters": [
+            {
+                "name": "price_data",
+                "type": "list[float]"
+            },
+            {
+                "name": "volume_data",
+                "type": "list[int]"
+            },
+            {
+                "name": "rsi_period",
+                "type": "int"
+            },
+            {
+                "name": "macd_fast",
+                "type": "int"
+            },
+            {
+                "name": "macd_slow",
+                "type": "int"
+            },
+            {
+                "name": "macd_signal",
+                "type": "int"
+            }
+        ],
+        "required": [
+            "price_data",
+            "volume_data",
+            "rsi_period",
+            "macd_fast",
+            "macd_slow",
+            "macd_signal"
+        ],
+        "returns": [
+            {
+                "name": "signal",
+                "type": "string"
+            },
+            {
+                "name": "confidence",
+                "type": "float"
+            }
+        ]
+    },
+    {
+        "name": "calculate_portfolio_metrics",
+        "description": "Calculates various portfolio metrics given asset allocations and historical returns",
+        "parameters": [
+            {
+                "name": "allocations",
+                "type": "dict[string, float]"
+            },
+            {
+                "name": "returns",
+                "type": "dict[string, list[float]]"
+            },
+            {
+                "name": "risk_free_rate",
+                "type": "float"
+            }
+        ],
+        "required": [
+            "allocations",
+            "returns",
+            "risk_free_rate"
+        ],
+        "returns": [
+            {
+                "name": "metrics",
+                "type": "dict"
+            }
+        ]
+    },
+    {
+        "name": "get_economic_indicators",
+        "description": "Retrieves current values of major economic indicators",
+        "parameters": [
+            {
+                "name": "country",
+                "type": "string"
+            },
+            {
+                "name": "indicators",
+                "type": "list[string]"
+            }
+        ],
+        "required": [
+            "country",
+            "indicators"
+        ],
+        "returns": [
+            {
+                "name": "indicator_data",
+                "type": "dict[string, float]"
+            }
+        ]
+    },
+    {
+        "name": "generate_report",
+        "description": "Generates a formatted report based on provided data and template",
+        "parameters": [
+            {
+                "name": "template",
+                "type": "string"
+            },
+            {
+                "name": "data",
+                "type": "dict"
+            }
+        ],
+        "required": [
+            "template",
+            "data"
+        ],
+        "returns": [
+            {
+                "name": "report",
+                "type": "string"
+            }
+        ]
+    }
+]
+<|end_functions_schema|>
+
+When the user asks you a question, if you need to use functions, provide ONLY ALL OF THE function calls, ALL IN ONE PLACE, in the format:
+
+<|function_calls|>
+    [
+        { "name": "function_name", "kwargs": {"kwarg_1": "value_1", "kwarg_2": "value_2"}, "returns": ["output_1"]},
+        { "name": "other_function_name", "kwargs": { "kwarg_3": "output_1"}, "returns": ["output_2", "output_3"]}
+    ]
+<|end_function_calls|>
+
+If you need to modify strings ONLY USE THE AVAILABLE FUNCTIONS GIVEN TO YOU. IF AND ONLY IF you don't need to use functions, give your answer in between <|answer|> and <|end_answer|> blocks. For your thoughts and reasoning behind using or not using functions, place ALL OF THEM in between a SINGLE <|thoughts|> and <|end_thoughts|> block, before the <|function_calls|> and <|end_function_calls|> tags, like so:
+
+<|thoughts|>
+The user wants X, to do that, I should call the following functions:
+
+function_name: Reasoning,
+function_name_2: Reasoning2,
+etc.
+<|end_thoughts|>
+
+Provide nothing else than the information in the <|function_calls|> & <|end_function_calls|>, <|answer|> & <|end_answer|> and <|thoughts|> & <|end_thoughts|> blocks.
+
+User Query:
+I'm interested in creating a comprehensive analysis of the technology sector. Can you fetch stock data for Apple (AAPL), Microsoft (MSFT), and Google (GOOGL) for the past year, calculate their moving averages, analyze recent news sentiment, generate trading signals, and then create a portfolio with these stocks? Also, include relevant economic indicators for the US in the final report.
