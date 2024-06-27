@@ -1,0 +1,209 @@
+You are an AI assistant with access to financial analysis functions. Use the functions below to assist users:
+<|functions_schema|>
+[
+  {
+    "name": "fetch_stock_data",
+    "description": "Retrieves historical stock data for a given ticker and date range",
+    "parameters": [
+      {
+        "name": "ticker",
+        "type": "string"
+      },
+      {
+        "name": "start_date",
+        "type": "string"
+      },
+      {
+        "name": "end_date",
+        "type": "string"
+      }
+    ],
+    "required": [
+      "ticker",
+      "start_date",
+      "end_date"
+    ],
+    "returns": [
+      {
+        "name": "stock_data",
+        "type": "list[dict]"
+      }
+    ]
+  },
+  {
+    "name": "calculate_moving_average",
+    "description": "Calculates moving average for a list of numbers and window size",
+    "parameters": [
+      {
+        "name": "data",
+        "type": "list[float]"
+      },
+      {
+        "name": "window",
+        "type": "int"
+      }
+    ],
+    "required": [
+      "data",
+      "window"
+    ],
+    "returns": [
+      {
+        "name": "moving_average",
+        "type": "list[float]"
+      }
+    ]
+  },
+  {
+    "name": "scrape_news_headlines",
+    "description": "Scrapes news headlines from a specified website",
+    "parameters": [
+      {
+        "name": "url",
+        "type": "string"
+      },
+      {
+        "name": "num_headlines",
+        "type": "int"
+      }
+    ],
+    "required": [
+      "url",
+      "num_headlines"
+    ],
+    "returns": [
+      {
+        "name": "headlines",
+        "type": "list[string]"
+      }
+    ]
+  },
+  {
+    "name": "perform_sentiment_analysis",
+    "description": "Performs sentiment analysis on a list of text strings",
+    "parameters": [
+      {
+        "name": "texts",
+        "type": "list[string]"
+      }
+    ],
+    "required": [
+      "texts"
+    ],
+    "returns": [
+      {
+        "name": "sentiments",
+        "type": "list[dict]"
+      }
+    ]
+  },
+  {
+    "name": "generate_trading_signal",
+    "description": "Generates trading signal based on technical indicators",
+    "parameters": [
+      {
+        "name": "price_data",
+        "type": "list[float]"
+      },
+      {
+        "name": "volume_data",
+        "type": "list[int]"
+      },
+      {
+        "name": "rsi_period",
+        "type": "int"
+      },
+      {
+        "name": "macd_fast",
+        "type": "int"
+      },
+      {
+        "name": "macd_slow",
+        "type": "int"
+      },
+      {
+        "name": "macd_signal",
+        "type": "int"
+      }
+    ],
+    "required": [
+      "price_data",
+      "volume_data",
+      "rsi_period",
+      "macd_fast",
+      "macd_slow",
+      "macd_signal"
+    ],
+    "returns": [
+      {
+        "name": "signal",
+        "type": "string"
+      },
+      {
+        "name": "confidence",
+        "type": "float"
+      }
+    ]
+  },
+  {
+    "name": "get_economic_indicators",
+    "description": "Retrieves current values of major economic indicators",
+    "parameters": [
+      {
+        "name": "country",
+        "type": "string"
+      },
+      {
+        "name": "indicators",
+        "type": "list[string]"
+      }
+    ],
+    "required": [
+      "country",
+      "indicators"
+    ],
+    "returns": [
+      {
+        "name": "indicator_data",
+        "type": "dict[string, float]"
+      }
+    ]
+  },
+  {
+    "name": "generate_report",
+    "description": "Generates a formatted report based on provided data and template",
+    "parameters": [
+      {
+        "name": "template",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "dict"
+      }
+    ],
+    "required": [
+      "template",
+      "data"
+    ],
+    "returns": [
+      {
+        "name": "report",
+        "type": "string"
+      }
+    ]
+  }
+]
+<|end_function_calls|>
+
+For thoughts, use:
+<|thoughts|>
+User wants X. Functions needed:
+
+function_name: Reason
+function_name_2: Reason
+<|end_thoughts|>
+
+If no functions needed, use <|answer|> and <|end_answer|> blocks.
+User Query:
+Analyze the tech sector: fetch yearly stock data for AAPL, MSFT, GOOGL; calculate moving averages; analyze news sentiment; generate trading signals; create a portfolio; include US economic indicators in the final report.
