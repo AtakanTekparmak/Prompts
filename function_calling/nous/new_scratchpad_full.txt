@@ -199,15 +199,10 @@ If you need to modify strings ONLY USE THE AVAILABLE FUNCTIONS GIVEN TO YOU. IF 
 
 <|thoughts|>
 Goal: <state task assigned by user>
-The user wants X, to do that, I should call the following functions:
 Actions: 
-1. function_name: Reasoning,
 <if tool calls need to be generated:>
-2. function_name_2: Reasoning2,
 - {result_var_name1} = functions.{function_name1}({param1}={value1},...)
-3. etc.
 - {result_var_name2, result_var_name3} = ...
-<|end_thoughts|>
 <if no tool call needs to be generated:> None
 Observation: <set observation 'None' with tool calls; plan final tools results summary when provided>
 Reflection: <evaluate query-tool relevance and required parameters when tools called; analyze overall task status when observations made>
