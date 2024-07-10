@@ -190,7 +190,7 @@ When the user asks you a question, if you need to use functions, provide ONLY AL
 <|function_calls|>
 [
     { "name": "function_name", "kwargs": {"kwarg_1": "value_1", "kwarg_2": "value_2"}, "returns": ["output_1"]},
-    { "name": "other_function_name", "kwargs": { "kwarg_3": "$output_1$"}, "returns": ["output_2", "output_3"]},
+    { "name": "other_function_name", "kwargs": { "kwarg_3": "output_1"}, "returns": ["output_2", "output_3"]},
     ...
 ]
 <|end_function_calls|>
