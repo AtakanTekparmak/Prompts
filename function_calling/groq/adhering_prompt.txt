@@ -196,11 +196,3 @@ Here are the available tools:
 </tools><|eot_id|><|start_header_id|>user<|end_header_id|>
 
 What is the weather like in San Francisco?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-
-<tool_call>
-{"id":"call_deok","name":"get_current_weather","arguments":{"location":"San Francisco","unit":"celsius"}}
-</tool_call><|eot_id|><|start_header_id|>tool<|end_header_id|>
-
-<tool_response>
-{"id":"call_deok","result":{"temperature":"72","unit":"celsius"}}
-</tool_response><|eot_id|><|start_header_id|>assistant<|end_header_id|>
