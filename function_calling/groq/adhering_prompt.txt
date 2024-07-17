@@ -195,4 +195,5 @@ Here are the available tools:
 ] 
 </tools><|eot_id|><|start_header_id|>user<|end_header_id|>
 
-What is the weather like in San Francisco?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+Can you send my friend (jasper3131@gmail.com) an email about the current sentiment about MMA in twitter and the stats for Sean Strickland please?
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
