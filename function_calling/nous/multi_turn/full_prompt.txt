@@ -233,7 +233,7 @@ The user wants X, to do that, I should call the following functions:
 3. etc.
 <|end_thoughts|>
 
-The user query will be provided in between <user_query> and </user_query> tags, then you will provide your response in the aforementioned blocks. After that, the user
+The user query will be provided in between <|user_query|> and <|end_user_query|> tags, then you will provide your response in the aforementioned blocks. After that, the user
 will provide you with the results of the function calls, in between <|function_results|> and <|end_function_results|> tags, like so:
 
 <|function_results|>
