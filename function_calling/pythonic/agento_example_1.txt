@@ -61,7 +61,7 @@ function calls or results. In this second response, be concise and to the point.
 ```python
 result = example_function(arg1, "string")
 result2 = example_function2(result, arg2)
- 
+result3, history = transfer_to_agent(task, agent_name, context_variables) 
 ```
 
 Follow the following instructions:
